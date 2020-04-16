@@ -2,15 +2,13 @@ var chalk = require('chalk');
 var inquirer = require('inquirer');
 var cmd = require('./shellInterface.js');
 
-inquirer.registerPrompt("table", require("./index"));
-
 var selection = {
   seed: 0.1,
   projection: "Mercator",
   generator: "Yes",
   color: "Olsson",
   outline: "No",
-  dimensions: [600, 800],
+  dimensions: "600x800",
   filename: 'map'
 };
 
@@ -20,8 +18,6 @@ function main(selection) {
 
   seed(selection);
 }
-
-function arrayize() {};
 
 // PROMPT 1 - SEED SELECTION
 function seed(selection) {
@@ -181,13 +177,14 @@ function configure(selection) {
   }
 
   var command = "./planet/planet" + ` -s ${s}` + ` -p${p}` + ` -L 0 -l 0` + ` -h ${h}` + ` -w ${w}` + ` -C ./planet/${col}.col` + `${l}` + `${e}` + ` -o ./output/${out}.bmp`
-  console.log(command);
-
-  // exec(command);
+  
+  exec(command);
 }
 
 function exec(command) {
+  console.log("Generating...");
   cmd.exec(command);
+  console.log("Done!");
 }
 
 // START THE APPLICATION
