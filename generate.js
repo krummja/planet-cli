@@ -31,7 +31,7 @@ function seed(selection) {
       }
     })
     .then(answers => {
-      selection.view = answers.view;
+      selection.seed = answers.seed;
       projection(selection);
     })
 }
@@ -177,7 +177,6 @@ function configure(selection) {
   }
 
   var command = "./planet/planet" + ` -s ${s}` + ` -p${p}` + ` -L 0 -l 0` + ` -h ${h}` + ` -w ${w}` + ` -C ./planet/${col}.col` + `${l}` + `${e}` + ` -o ./output/${out}.bmp`
-  
   exec(command);
 }
 
